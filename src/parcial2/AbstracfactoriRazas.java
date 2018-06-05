@@ -13,4 +13,5 @@ public interface AbstracfactoriRazas {
     RAZA1 getraza1(int opcion);
     RAZA2 getraza2(int opcion);
     RAZA3 getraza3(int opcion);
+    
 }

@@ -6,12 +6,12 @@
 package Raza1;
 
 import Raza1.RAZA1;
-import parcial2.Ejercito;
-import parcial2.Ejercito;
-import parcial2.FuerzasEspeciale;
-import parcial2.FuerzasEspeciale;
-import parcial2.Soldadoespacial;
-import parcial2.Soldadoespacial;
+import algo.Ejercito;
+import algo.Ejercito;
+import algo.FuerzasEspeciale;
+import algo.FuerzasEspeciale;
+import algo.Soldadoespacial;
+import algo.Soldadoespacial;
 
 /**
  *

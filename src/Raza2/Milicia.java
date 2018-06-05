@@ -5,9 +5,9 @@
  */
 package Raza2;
 
-import parcial2.Ejercito;
-import parcial2.FuerzasEspeciale;
-import parcial2.Soldadoespacial;
+import algo.Ejercito;
+import algo.FuerzasEspeciale;
+import algo.Soldadoespacial;
 
 /**
  *

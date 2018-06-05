@@ -6,18 +6,22 @@
 package Raza1;
 
 import Raza1.RAZA1;
-import parcial2.Cuartel;
-import parcial2.Cuartel;
-import parcial2.Mina;
-import parcial2.Mina;
-import parcial2.Silo;
-import parcial2.Silo;
+import algo.Cuartel;
+import algo.Cuartel;
+import algo.Cuartels;
+import algo.Mina;
+import algo.Mina;
+import algo.Silo;
+import algo.Silo;
+import algo.mina2;
 
 /**
  *
  * @author Mery Acevedo
  */
 public class Edificacion implements RAZA1{
+    private  Cuartels cuartelcentral =new Cuartels();
+    
 
     @Override
     public Object crear(int opcion) {
@@ -28,6 +32,8 @@ public class Edificacion implements RAZA1{
                 return new Cuartel();
             case 3:
                 return new Silo();
+                case 4:
+                return new mina2();
             default:
                 return null;
         }

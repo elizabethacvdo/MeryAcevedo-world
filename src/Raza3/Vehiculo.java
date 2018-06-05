@@ -5,9 +5,9 @@
  */
 package Raza3;
 
-import parcial2.Aviones;
-import parcial2.Tanque;
-import parcial2.misil;
+import algo.Aviones;
+import algo.Tanque;
+import algo.misil;
 
 /**
  *

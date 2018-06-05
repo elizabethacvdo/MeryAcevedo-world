@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parcial2;
+package algo;
 
 /**
  *
  * @author Mery Acevedo
  */
-public class Mina {
+public class Soldadoespacial {
     private int vida;
-    private String tipo;
+    private int ataque;
     private int fasecreacion;
 }

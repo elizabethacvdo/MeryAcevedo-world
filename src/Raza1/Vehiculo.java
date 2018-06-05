@@ -6,12 +6,12 @@
 package Raza1;
 
 import Raza1.RAZA1;
-import parcial2.Aviones;
-import parcial2.Aviones;
-import parcial2.Tanque;
-import parcial2.Tanque;
-import parcial2.misil;
-import parcial2.misil;
+import algo.Aviones;
+import algo.Aviones;
+import algo.Tanque;
+import algo.Tanque;
+import algo.misil;
+import algo.misil;
 
 /**
  *

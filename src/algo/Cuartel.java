@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parcial2;
+package algo;
 
 /**
  *
  * @author Mery Acevedo
  */
-public class Aviones {
+public class Cuartel {
     private int vida;
-    private int ataque;
+    private int capacidad;
     private int fasecreacion;
-    
 }

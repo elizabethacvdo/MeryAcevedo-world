@@ -3,14 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parcial2;
+package algo;
 
 /**
  *
  * @author Mery Acevedo
  */
-public class Silo {
+public class Ejercito {
     private int vida;
+    private int ataque;
     private int fasecreacion;
-    private boolean estado=false;
+    
+    public void imprimir(){
+        System.out.println("ola si funciono");
+    }
+
+   
+    
+    
 }

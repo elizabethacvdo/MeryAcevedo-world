@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parcial2;
+package algo;
 
 /**
  *
  * @author Mery Acevedo
  */
-public class Tanque {
+public class Cuartels {
     private int vida;
-    private int ataque;
-    private int fasecreacion;
+    private int recurso1=0;
+    private int recurso2=0;
+    private int recurso3=0;
     
 }
