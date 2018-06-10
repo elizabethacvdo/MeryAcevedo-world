@@ -5,13 +5,9 @@
  */
 package Raza1;
 
-import Raza1.RAZA1;
-import algo.Cuartel;
 import algo.Cuartel;
 import algo.Cuartels;
 import algo.Mina;
-import algo.Mina;
-import algo.Silo;
 import algo.Silo;
 import algo.mina2;
 

@@ -5,29 +5,42 @@
  */
 package Raza1;
 
-import Raza1.RAZA1;
-import algo.Ejercito;
 import algo.Ejercito;
 import algo.FuerzasEspeciale;
-import algo.FuerzasEspeciale;
 import algo.Soldadoespacial;
-import algo.Soldadoespacial;
+import java.util.ArrayList;
 
 /**
  *
  * @author Mery Acevedo
  */
 public class Milicia implements RAZA1{
+    private ArrayList<Ejercito> ejercitos;
+    private ArrayList<Soldadoespacial> soldadosespeciales;
+    private ArrayList<FuerzasEspeciale> fuerzasespeciales;
+    
+    
+    public Milicia() {
+        ejercitos = new ArrayList<>();
+        soldadosespeciales = new ArrayList<>();
+        fuerzasespeciales= new ArrayList<>();
+    }
 
     @Override
     public Object crear(int opcion) {
         switch(opcion){
             case 1:
-                return new Ejercito();
+                Ejercito e=new Ejercito();
+                ejercitos.add(e);
+                return e;
             case 2:
-                return new Soldadoespacial();
+                Soldadoespacial se=new Soldadoespacial();
+                soldadosespeciales.add(se);
+                return se;
             case 3:
-                return new FuerzasEspeciale();
+                FuerzasEspeciale fe = new FuerzasEspeciale();
+                fuerzasespeciales.add(fe);
+                return fe;
             default:
                 return null;
         }
@@ -41,5 +54,23 @@ public class Milicia implements RAZA1{
     @Override
     public int recolectar() {
 return 0;    }
+    
+    /**
+     *
+     * @return
+     */
+    public  int verejercitos(){
+        return ejercitos.size();
+    }
+    
+     public int versoldados(){
+        return soldadosespeciales.size();
+    }
+     
+     
+      public int verfuerzas(){
+        return fuerzasespeciales.size();
+    }
+    
     
 }

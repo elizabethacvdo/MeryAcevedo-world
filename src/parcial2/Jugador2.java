@@ -10,18 +10,25 @@ package parcial2;
  * @author Mery Acevedo
  */
 public class Jugador2 {
-    private String nombre;
-   AbstracfactoriRazas raza;
+    private final String nombre;
+   private final AbstracfactoriRazas raza;
+
+    public Jugador2(String nombre, AbstracfactoriRazas raza) {
+        this.nombre = nombre;
+        this.raza = raza;
+    }
    
 
-    public  String getJugador2() {
+    public  String getnombre2() {
         return nombre;
     }
 
-
-    public void setJugador2(String jugador2) {
-        if(this.nombre==null){
-        this.nombre = jugador2;}
+    public AbstracfactoriRazas getRaza() {
+        return raza;
     }
+    
+    
+
+   
     
 }

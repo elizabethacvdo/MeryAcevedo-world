@@ -13,10 +13,10 @@ public class Ejercito {
     private int vida;
     private int ataque;
     private int fasecreacion;
+    public String ola="ola";
     
     public void imprimir(){
-        System.out.println("ola si funciono");
-    }
+        System.out.println("ola");    }
 
    
     
