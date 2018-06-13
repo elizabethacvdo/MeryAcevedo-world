@@ -15,17 +15,10 @@ import java.util.ArrayList;
  * @author Mery Acevedo
  */
 public class Milicia implements RAZA1{
-    private ArrayList<Ejercito> ejercitos;
-    private ArrayList<Soldadoespacial> soldadosespeciales;
-    private ArrayList<FuerzasEspeciale> fuerzasespeciales;
-    
-    
-    public Milicia() {
-        ejercitos = new ArrayList<>();
-        soldadosespeciales = new ArrayList<>();
-        fuerzasespeciales= new ArrayList<>();
-    }
-
+    private ArrayList<Ejercito> ejercitos=new ArrayList<>();
+    private ArrayList<Soldadoespacial> soldadosespeciales=new ArrayList<>();
+    private ArrayList<FuerzasEspeciale> fuerzasespeciales=new ArrayList<>();
+  
     @Override
     public Object crear(int opcion) {
         switch(opcion){
@@ -54,22 +47,14 @@ public class Milicia implements RAZA1{
     @Override
     public int recolectar() {
 return 0;    }
-    
-    /**
-     *
-     * @return
-     */
-    public  int verejercitos(){
-        return ejercitos.size();
-    }
-    
-     public int versoldados(){
-        return soldadosespeciales.size();
-    }
-     
-     
-      public int verfuerzas(){
-        return fuerzasespeciales.size();
+   
+
+    @Override
+    public void ver() {
+        System.out.println("hay: "+ejercitos.size()+" ejercitos");
+        System.out.println("hay: "+soldadosespeciales.size()+" soldados especiales");
+        System.out.println("hay "+fuerzasespeciales.size()+" fuerzas especiales");
+                
     }
     
     

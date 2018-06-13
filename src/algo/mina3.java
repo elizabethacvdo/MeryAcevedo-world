@@ -3,19 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Raza1;
+package algo;
 
 /**
  *
  * @author Mery Acevedo
  */
-public interface RAZA1 {
-
-    
-    Object crear(int opcion);
-    String atacar();
-   int recolectar();
-    void ver();
-    
+public class mina3 {
     
 }
