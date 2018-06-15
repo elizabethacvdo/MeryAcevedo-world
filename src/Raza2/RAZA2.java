@@ -18,6 +18,7 @@ import algo.mina2;
 import algo.mina3;
 import algo.misil;
 import java.util.ArrayList;
+import parcial2.Jugador2;
 
 /**
  *
@@ -27,8 +28,8 @@ public interface RAZA2 {
     ArrayList<Ejercito> getejercito();
     ArrayList<Soldadoespacial> getsoldado();
     ArrayList<FuerzasEspeciale>getfuerzas();
-    void crear(int op);
-    void pelear();
+    void crear(int op,Jugador2 j);
+    void pelear(Jugador2 j);
     ArrayList<Tanque> gettanque();
     ArrayList<Aviones> getavion();
     ArrayList<misil> getmisil();

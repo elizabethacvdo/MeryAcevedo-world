@@ -12,7 +12,7 @@ public class Parcial2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-    Menu m =new Menu();
+    Menu m =Menu.getInstance();
     m.iniciar();
     
     }

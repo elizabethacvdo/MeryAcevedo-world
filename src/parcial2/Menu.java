@@ -13,10 +13,24 @@ import java.util.Scanner;
 public class Menu {
 
     Scanner input = new Scanner(System.in);
+    private static Menu menu1;
+    
+    private Menu(){
+    }
+    
+    public static Menu getInstance(){
+        if(menu1==null){
+            menu1=new Menu();
+        }return menu1;
+    }
     private AbstracfactoriRazas raza1, raza2;
     private Jugador2 j1, j2;
     private int opcion11, o1, o2, cont = 0;
     private int contadorfases =0;
+
+    public int getContadorfases() {
+        return contadorfases;
+    }
 
     public Jugador2 getJ1() {
         return j1;
@@ -80,9 +94,7 @@ public class Menu {
     private void escogerra1(Jugador2 j, int opcion) {//opcion es el elemento que escogio milicia,eduf.etc..
         switch (opcion) {
             case 1:                         ///milicia--------------------------------------------raza1
-                if (null == j.getMilicia()) {//esto es para que solo cree una milicia por raza
-                    
-                       
+                if (null == j.getMilicia()) {
                     if (null != j.getEdificacion()) {
                         j.getEdificacion().ver();
                         if (j.getEdificacion().getcuartel().size() > 0) {
@@ -90,7 +102,7 @@ public class Menu {
                             RAZA1 mil = j.getRaza().getraza1(opcion);
                             j.setMilicia(mil);
                             j.getMilicia().ver();
-                            j.getMilicia().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"));
+                            j.getMilicia().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"),j);
                         }
                     } else {
                         System.out.println("debes crear un cuartel primero");
@@ -99,14 +111,14 @@ public class Menu {
                     j.getMilicia().ver();
                     switch (escoger3()) {
                         case 1:
-                            j.getMilicia().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"));
+                            j.getMilicia().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"),j);
                             break;
                         case 2:
-                            //j.getMilicia().atacar();
-                            System.out.println("atacado");
+                          //  j.getMilicia().pelear(j);
+                            
                             break;
                         case 3:
-                            System.out.println("no se puede recolectar nada");
+                            System.out.println("no se puede recolectar con un ejercito");
                             break;
                     }
 
@@ -118,12 +130,12 @@ public class Menu {
                     RAZA1 edif = j.getRaza().getraza1(opcion);
                     j.setEdificacion(edif);
                     j.getEdificacion().ver();
-                            j.getEdificacion().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"));
+                            j.getEdificacion().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"),j);
                 } else {
                     j.getEdificacion().ver();
                     switch (escoger3()) {
                         case 1:
-                            j.getEdificacion().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"));
+                            j.getEdificacion().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"),j);
                             break;
                         case 2:
                             System.out.println("no puedes atacar con un edificio");
@@ -142,7 +154,7 @@ public class Menu {
                     RAZA1 vehi = j.getRaza().getraza1(opcion);
                     j.setVehiculo(vehi);
                     j.getVehiculo().ver();
-                    j.getVehiculo().crear(escoger4("tanque", "aviones", "misil"));
+                    j.getVehiculo().crear(escoger4("tanque", "aviones", "misil"),j);
                         }else{
                         System.out.println("debes crear antes un cuartel");
                     }
@@ -152,10 +164,10 @@ public class Menu {
                     j.getVehiculo().ver();
                     switch (escoger3()) {
                         case 1:
-                            j.getVehiculo().crear(escoger4("tanque", "aviones", "misil"));
+                            j.getVehiculo().crear(escoger4("tanque", "aviones", "misil"),j);
                             break;
                         case 2:
-                            //j.getVehiculo().atacar();
+                            //j.getVehiculo().pelear(j);
                             break;
                         case 3:
                             System.out.println("no se puede recolectar con esto");
@@ -170,7 +182,8 @@ public class Menu {
         switch (opcion) {
             case 1:                         ///milicia--------------------------------------------raza1
                 if (null == j.getMilicia2()) {//esto es para que solo cree una milicia por raza
-
+                    
+                       
                     if (null != j.getEdificacion2()) {
                         j.getEdificacion2().ver();
                         if (j.getEdificacion2().getcuartel().size() > 0) {
@@ -178,23 +191,23 @@ public class Menu {
                             RAZA2 mil = j.getRaza().getraza2(opcion);
                             j.setMilicia2(mil);
                             j.getMilicia2().ver();
-                            j.getMilicia2().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"));
+                            j.getMilicia2().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"),j);
                         }
                     } else {
                         System.out.println("debes crear un cuartel primero");
-                    }
-                } else {
+                    }      
+                } else{
                     j.getMilicia2().ver();
                     switch (escoger3()) {
                         case 1:
-                            j.getMilicia2().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"));
+                            j.getMilicia2().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"),j);
                             break;
                         case 2:
-                            //j.getMilicia().atacar();
-                            System.out.println("atacado");
+                            //j.getMilicia().pelear(j);
+                            
                             break;
                         case 3:
-                            System.out.println("no se puede recolectar nada");
+                            System.out.println("no se puede recolectar con un ejercito");
                             break;
                     }
 
@@ -206,12 +219,12 @@ public class Menu {
                     RAZA2 edif = j.getRaza().getraza2(opcion);
                     j.setEdificacion2(edif);
                     j.getEdificacion2().ver();
-                    j.getEdificacion2().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"));
+                    j.getEdificacion2().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"),j);
                 } else {
                     j.getEdificacion2().ver();
                     switch (escoger3()) {
                         case 1:
-                            j.getEdificacion2().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"));
+                            j.getEdificacion2().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"),j);
                             break;
                         case 2:
                             System.out.println("no puedes atacar con un edificio");
@@ -227,15 +240,15 @@ public class Menu {
                     RAZA2 vehi = j.getRaza().getraza2(opcion);
                     j.setVehiculo2(vehi);
                     j.getVehiculo2().ver();
-                    j.getVehiculo2().crear(escoger4("tanque", "aviones", "misil"));
+                    j.getVehiculo2().crear(escoger4("tanque", "aviones", "misil"),j);
                 } else {
                     j.getVehiculo2().ver();
                     switch (escoger3()) {
                         case 1:
-                            j.getVehiculo2().crear(escoger4("tanque", "aviones", "misil"));
+                            j.getVehiculo2().crear(escoger4("tanque", "aviones", "misil"),j);
                             break;
                         case 2:
-                            //j.getVehiculo().atacar();
+                           // j.getVehiculo2().pelear(j);
                             break;
                         case 3:
                             System.out.println("no se puede recolectar con esto");
@@ -258,7 +271,7 @@ public class Menu {
                             RAZA3 mil = j.getRaza().getraza3(opcion);
                             j.setMilicia3(mil);
                             j.getMilicia3().ver();
-                            j.getMilicia3().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"));
+                            j.getMilicia3().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"),j);
                         }
                     } else {
                         System.out.println("debes crear un cuartel primero");
@@ -267,11 +280,11 @@ public class Menu {
                     j.getMilicia3().ver();
                     switch (escoger3()) {
                         case 1:
-                            j.getMilicia3().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"));
+                            j.getMilicia3().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"),j);
                             break;
                         case 2:
-                            //j.getMilicia().atacar();
-                            System.out.println("atacado");
+                            j.getMilicia3().pelear(j);
+                            
                             break;
                         case 3:
                             System.out.println("no se puede recolectar nada");
@@ -286,12 +299,12 @@ public class Menu {
                     RAZA3 edif = j.getRaza().getraza3(opcion);
                     j.setEdificacion3(edif);
                     j.getEdificacion3().ver();
-                    j.getEdificacion3().crear(escoger4("mina", "silo", "cuartel"));
+                    j.getEdificacion3().crear(escoger4("mina", "silo", "cuartel"),j);
                 } else {
                     j.getEdificacion3().ver();
                     switch (escoger3()) {
                         case 1:
-                            j.getEdificacion3().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"));
+                            j.getEdificacion3().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"),j);
                             break;
                         case 2:
                             System.out.println("no puedes atacar con un edificio");
@@ -307,15 +320,15 @@ public class Menu {
                     RAZA3 vehi = j.getRaza().getraza3(opcion);
                     j.setVehiculo3(vehi);
                     j.getVehiculo3().ver();
-                    j.getVehiculo3().crear(escoger4("tanque", "aviones", "misil"));
+                    j.getVehiculo3().crear(escoger4("tanque", "aviones", "misil"),j);
                 } else {
                     j.getVehiculo3().ver();
                     switch (escoger3()) {
                         case 1:
-                            j.getVehiculo3().crear(escoger4("tanque", "aviones", "misil"));
+                            j.getVehiculo3().crear(escoger4("tanque", "aviones", "misil"),j);
                             break;
                         case 2:
-                            //j.getVehiculo().atacar();
+                           // j.getVehiculo3().pelear(j);
                             break;
                         case 3:
                             System.out.println("no se puede recolectar con esto");
@@ -426,7 +439,11 @@ public class Menu {
                 
                 }////aqui va un wuile   
             }///aqui termina el for
-            //aqui comprobar quien pierde
+            if(j1.getCuartelcentral().getVida()<=0){
+                break;
+            }else if(j2.getCuartelcentral().getVida()<=0){
+                break;
+            }
         }/////aqui termina el while
     }
 
@@ -518,8 +535,9 @@ private int escoger5 (String b, String c, String d,String e,String h) {
             }else {
                 System.out.println("ingrese una opcion valida");
             }
-
+         
         }
-
-    }
+        
 }
+    }
+

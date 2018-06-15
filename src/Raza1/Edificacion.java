@@ -18,6 +18,7 @@ import algo.mina2;
 import algo.mina3;
 import algo.misil;
 import java.util.ArrayList;
+import parcial2.Jugador2;
 
 /**
  *
@@ -36,7 +37,7 @@ public class Edificacion implements RAZA1{
     
 
     @Override
-    public void crear(int op) {
+   public void crear(int op,Jugador2 j) {
 switch(op){
             case 1:
                 Mina e=new Mina();
@@ -86,7 +87,7 @@ switch(op){
         }    }
 
     @Override
-    public void pelear() {
+   public void pelear(Jugador2 j) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

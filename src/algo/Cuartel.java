@@ -54,7 +54,7 @@ public class Cuartel {
     }
 
     public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
+        this.capacidad += capacidad;
     }
 
     public int getFasecreacion() {
