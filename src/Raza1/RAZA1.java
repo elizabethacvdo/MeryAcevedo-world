@@ -40,7 +40,6 @@ public interface RAZA1 {
     ArrayList<mina3> getmina3();
     ArrayList<Silo> getsilo();
     void ver();
-    CuartelCentral getcuartelcentral();
 
    
     

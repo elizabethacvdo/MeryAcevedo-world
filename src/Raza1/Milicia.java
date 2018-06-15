@@ -130,10 +130,7 @@ return fuerzasespeciales;    }
         System.out.println("tiene: "+fuerzasespeciales.size()+" fuerzas especiales");
     }
 
-    @Override
-    public CuartelCentral getcuartelcentral() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+ 
 
  
     

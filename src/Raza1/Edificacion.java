@@ -29,17 +29,10 @@ public class Edificacion implements RAZA1{
     private ArrayList<mina3> mina3=new ArrayList<>();
     private ArrayList<Silo> silo=new ArrayList<>();
     private ArrayList<Cuartel> cuartel=new ArrayList<>();
-    private CuartelCentral cuartelcentral ;
     
-    public Edificacion(){
-        this.cuartelcentral=new CuartelCentral();
-        
-    }
     
-    @Override
-    public CuartelCentral getcuartelcentral(){
-        return cuartelcentral;
-    }
+   
+    
     
 
     @Override

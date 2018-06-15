@@ -34,15 +34,6 @@ public class Edificacion implements RAZA2{
     private ArrayList<Cuartel> cuartel=new ArrayList<>();
     private CuartelCentral cuartelcentral ;
     
-    public Edificacion(){
-        this.cuartelcentral=new CuartelCentral();
-        
-    }
-    
-    @Override
-    public CuartelCentral getcuartelcentral(){
-        return cuartelcentral;
-    }
     
 
     @Override

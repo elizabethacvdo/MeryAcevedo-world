@@ -118,12 +118,12 @@ public class Menu {
                     RAZA1 edif = j.getRaza().getraza1(opcion);
                     j.setEdificacion(edif);
                     j.getEdificacion().ver();
-                    j.getEdificacion().crear(escoger4("mina", "silo", "cuartel"));
+                            j.getEdificacion().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"));
                 } else {
                     j.getEdificacion().ver();
                     switch (escoger3()) {
                         case 1:
-                            j.getEdificacion().crear(escoger4("mina", "silo", "cuartel"));
+                            j.getEdificacion().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"));
                             break;
                         case 2:
                             System.out.println("no puedes atacar con un edificio");
@@ -136,11 +136,19 @@ public class Menu {
                 break;
             case 3:
                 if (null == j.getVehiculo()) {     //----------------------------vehiculos
+                    if (null != j.getEdificacion()) {
+                        j.getEdificacion().ver();
+                        if (j.getEdificacion().getcuartel().size() > 0) {
                     RAZA1 vehi = j.getRaza().getraza1(opcion);
                     j.setVehiculo(vehi);
                     j.getVehiculo().ver();
                     j.getVehiculo().crear(escoger4("tanque", "aviones", "misil"));
-                } else {
+                        }else{
+                        System.out.println("debes crear antes un cuartel");
+                    }
+                    }else{
+                        System.out.println("debes crear un cuartel primero");
+                    }}else {
                     j.getVehiculo().ver();
                     switch (escoger3()) {
                         case 1:
@@ -155,8 +163,8 @@ public class Menu {
                     }
                 }
                 break;
-        }
-    }
+        }}
+    
 
      private void escogerra2(Jugador2 j, int opcion) {
         switch (opcion) {
@@ -198,12 +206,12 @@ public class Menu {
                     RAZA2 edif = j.getRaza().getraza2(opcion);
                     j.setEdificacion2(edif);
                     j.getEdificacion2().ver();
-                    j.getEdificacion2().crear(escoger4("mina", "silo", "cuartel"));
+                    j.getEdificacion2().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"));
                 } else {
                     j.getEdificacion2().ver();
                     switch (escoger3()) {
                         case 1:
-                            j.getEdificacion2().crear(escoger4("mina", "silo", "cuartel"));
+                            j.getEdificacion2().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"));
                             break;
                         case 2:
                             System.out.println("no puedes atacar con un edificio");
@@ -283,7 +291,7 @@ public class Menu {
                     j.getEdificacion3().ver();
                     switch (escoger3()) {
                         case 1:
-                            j.getEdificacion3().crear(escoger4("mina", "silo", "cuartel"));
+                            j.getEdificacion3().crear(escoger5("mina", "silo", "cuartel","mina2","mina3"));
                             break;
                         case 2:
                             System.out.println("no puedes atacar con un edificio");
@@ -323,35 +331,65 @@ public class Menu {
         String opcion1;
         System.out.println("inicio de juego ******************************");
         while (true) {
-            System.out.println("jugador1");
+            
             for (int i = 0; i < 2; i++) {
-                OUTER:
-                while (true) {
-                    System.out.println("escoja una opcion: ");
-                    System.out.println("a. milicia");
-                    System.out.println("b. edificaciones");
-                    System.out.println("c. vehiculos");
-                    opcion1 = input.nextLine();
-                    if (null == opcion1) {
-                        System.out.println("ingrese una opcion valida");
-                    } else {
-                        switch (opcion1) {
-                            case "a":
-                                opcion11 = 1;
-                                break OUTER;
-                            case "b":
-                                opcion11 = 2;
-                                break OUTER;
-                            case "c":
-                                opcion11 = 3;
-                                break OUTER;
-                            default:
-                                System.out.println("ingrese una opcion valida");
-                                break;
-                        }
-                    }
+                if(i==0){
+                    System.out.println("jugador1*****************************************");
+                }else{
+                    System.out.println("jugador 2**************************************");
                 }
+                while(true){
+                    
+                    if(i==0){//------------------------------------------------------------------------
+                       if( j.getCuartelcentral().getVida()<=0){
+                           break;
+                       }else{
+                           System.out.println("desea aumentar nivel");
+                           String o =input.nextLine();
+                           if(o=="si"){
+                               j.getCuartelcentral().comprarmejora();
+                           }
+                       }
+                    }else{
+                       if( j2.getCuartelcentral().getVida()<=0){
+                           break;
+                       }else{
+                           System.out.println("desea aumentar nivel");
+                           String o =input.nextLine();
+                           if(o=="si"){
+                               j2.getCuartelcentral().comprarmejora();
+                           } 
+                       }
+                    }//----------------------------------------------------------------------------------------------
+
+                       OUTER:
+                       while (true) {
+                           System.out.println("escoja una opcion: ");
+                           System.out.println("a. milicia");
+                           System.out.println("b. edificaciones");
+                           System.out.println("c. vehiculos");
+                           opcion1 = input.nextLine();
+                           if (null == opcion1) {
+                               System.out.println("ingrese una opcion valida");
+                           } else {
+                               switch (opcion1) {
+                                   case "a":
+                                       opcion11 = 1;
+                                       break OUTER;
+                                   case "b":
+                                       opcion11 = 2;
+                                       break OUTER;
+                                   case "c":
+                                       opcion11 = 3;
+                                       break OUTER;
+                                   default:
+                                       System.out.println("ingrese una opcion valida");
+                                       break;
+                               }
+                           }
+                       }   
                 if (i == 0) {
+                  
                     switch (o1) {//o1 es la raza que escogio anteriormente
                         case 1:
                             escogerra1(j, opcion11);
@@ -363,8 +401,9 @@ public class Menu {
                             escogerra3(j, opcion11);
                             break;
                     }
-                    System.out.println("jugador2");
+                    //System.out.println("jugador2");
                 } else {
+                    //System.out.println("jugador2");
                     switch (o2) {
                         case 1:
                             escogerra1(j2, opcion11);
@@ -376,10 +415,19 @@ public class Menu {
                             escogerra3(j2, opcion11);
                             break;
                     }
-                    System.out.println(opcion1);
+                    
                 }
-            }
-        }
+                    System.out.println("terminar turno si/no:");
+                    String ll=input.nextLine();
+                    if("si".equals(ll)){
+                        break;
+                    }
+                
+                
+                }////aqui va un wuile   
+            }///aqui termina el for
+            //aqui comprobar quien pierde
+        }/////aqui termina el while
     }
 
     private int escoger3() {
@@ -439,5 +487,39 @@ public class Menu {
         }
 
     }
+private int escoger5 (String b, String c, String d,String e,String h) {
+        int a;
+        String opcion;
+        System.out.println("escoge uno **********************************");
+        while (true) {
+            System.out.println("a. " + b);
+            System.out.println("b. " + c);
+            System.out.println("c. " + d);
+            System.out.println("d. "+ e);
+            System.out.println("e. "+h);
+            opcion = input.nextLine();
+            if ("a".equals(opcion)) {
+                a = 1;
+                return a;
+            } else if ("b".equals(opcion)) {
+                a = 2;
+                return a;
+            } else if ("c".equals(opcion)) {
+                a = 3;
+                return a;
+            } 
+            else if ("d".equals(opcion)) {
+                a = 4;
+                return a;
+            }
+            else if ("e".equals(opcion)) {
+                a = 5;
+                return a;
+            }else {
+                System.out.println("ingrese una opcion valida");
+            }
 
+        }
+
+    }
 }

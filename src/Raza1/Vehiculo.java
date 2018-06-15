@@ -132,10 +132,4 @@ public class Vehiculo implements RAZA1{
         System.out.println("tiene: " + aviones.size() + " aviones");
         System.out.println("tiene: " + misiles.size() + " misiles");
     }
-
-    @Override
-    public CuartelCentral getcuartelcentral() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

@@ -11,6 +11,7 @@ import Raza1.RAZA1;
 import Raza1.Vehiculo;
 import Raza2.RAZA2;
 import Raza3.RAZA3;
+import algo.CuartelCentral;
 
 /**
  *
@@ -28,6 +29,23 @@ public class Jugador2 {
    private RAZA3 milicia3;
    private RAZA3 edificacion3;
    private RAZA3 vehiculo3;
+   private CuartelCentral cuartelcentral;
+
+    public Jugador2(String nombre, AbstracfactoriRazas raza) {
+        this.nombre = nombre;
+        this.raza = raza;
+        this.cuartelcentral=new CuartelCentral();
+    }
+
+    public CuartelCentral getCuartelcentral() {
+        return cuartelcentral;
+    }
+
+    public void setCuartelcentral(CuartelCentral cuartelcentral) {
+        this.cuartelcentral = cuartelcentral;
+    }
+    
+   
 
     public String getNombre() {
         return nombre;
@@ -96,14 +114,6 @@ public class Jugador2 {
     public void setVehiculo3(RAZA3 vehiculo3) {
         this.vehiculo3 = vehiculo3;
     }
-
-   
-   
-    public Jugador2(String nombre, AbstracfactoriRazas raza) {
-        this.nombre = nombre;
-        this.raza = raza;
-    }
-   
 
     public  String getnombre2() {
         return nombre;
