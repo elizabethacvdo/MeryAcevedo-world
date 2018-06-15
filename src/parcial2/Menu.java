@@ -1,9 +1,7 @@
 package parcial2;
 
 import Raza1.Edificacion;
-import Raza1.Milicia;
 import Raza1.RAZA1;
-import Raza1.Vehiculo;
 import Raza2.RAZA2;
 import Raza3.RAZA3;
 import java.util.Scanner;
@@ -15,13 +13,19 @@ import java.util.Scanner;
 public class Menu {
 
     Scanner input = new Scanner(System.in);
-    private AbstracfactoriRazas raza1;
-    private AbstracfactoriRazas raza2;
-    private Jugador2 j1 = null;
-    private Jugador2 j2 = null;
-    private int opcion11,o1,o2,cont=0;
+    private AbstracfactoriRazas raza1, raza2;
+    private Jugador2 j1, j2;
+    private int opcion11, o1, o2, cont = 0;
+    private int contadorfases =0;
 
-   
+    public Jugador2 getJ1() {
+        return j1;
+    }
+
+    public Jugador2 getJ2() {
+        return j2;
+    }
+
     
 
     public void iniciar() {
@@ -59,261 +63,381 @@ public class Menu {
             }
             if (i == 0) {
                 j1 = new Jugador2(nombre1, raza1 = ProducerRazas.getrazas(opcion11));
-                o1=opcion11;    //es el tipo de raza
+                o1 = opcion11;    //es el tipo de raza
                 System.out.println("jugador 2: ");
 
             } else {
                 j2 = new Jugador2(nombre1, raza2 = ProducerRazas.getrazas(opcion11));
-                o2=opcion11;    //es el tipo de raza
+                o2 = opcion11;    //es el tipo de raza
                 System.out.println(opcion11);
             }
 
         }
-        escoger2(j1, j2,o1,o2);
+        escoger2(j1, j2, o1, o2);
     }
 ////----------------------------------------------------------------------------------------------------------------
-    public void escogerra1(Jugador2 j, int opcion) {//opcion es el elemento que escogio milicia,eduf.etc..
+
+    private void escogerra1(Jugador2 j, int opcion) {//opcion es el elemento que escogio milicia,eduf.etc..
         switch (opcion) {
-            case 1:
-                 if(null==j.getMilicia()){
-                RAZA1 mil = j.getRaza().getraza1(opcion);
-                 j.setMilicia(mil);
-                 j.getMilicia().ver();
-                 j.getMilicia().crear(escoger4("ejercito","soldado especial","fuerzas especiales"));
-                 }else{
-                     j.getMilicia().ver();
-                     j.getMilicia().crear(escoger4("ejercito","soldado especial","fuerzas especiales"));
-                 }
+            case 1:                         ///milicia--------------------------------------------raza1
+                if (null == j.getMilicia()) {//esto es para que solo cree una milicia por raza
+                    
+                       
+                    if (null != j.getEdificacion()) {
+                        j.getEdificacion().ver();
+                        if (j.getEdificacion().getcuartel().size() > 0) {
+
+                            RAZA1 mil = j.getRaza().getraza1(opcion);
+                            j.setMilicia(mil);
+                            j.getMilicia().ver();
+                            j.getMilicia().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"));
+                        }
+                    } else {
+                        System.out.println("debes crear un cuartel primero");
+                    }      
+                } else{
+                    j.getMilicia().ver();
+                    switch (escoger3()) {
+                        case 1:
+                            j.getMilicia().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"));
+                            break;
+                        case 2:
+                            //j.getMilicia().atacar();
+                            System.out.println("atacado");
+                            break;
+                        case 3:
+                            System.out.println("no se puede recolectar nada");
+                            break;
+                    }
+
+                }
                 break;
             case 2:
-                
-                if(null==j.getEdificacion()){
-                RAZA1 edif = j.getRaza().getraza1(opcion);
-                 j.setEdificacion(edif);
-                 j.getEdificacion().ver();
-                 j.getEdificacion().crear(escoger4("mina","cuartel","silo(misiles)"));
-                 }else{
-                     j.getEdificacion().ver();
-                     j.getEdificacion().crear(escoger4("mina","cuartel","silo(misiles)"));
-                 }
+
+                if (null == j.getEdificacion()) {///---------------------------------edificaciones
+                    RAZA1 edif = j.getRaza().getraza1(opcion);
+                    j.setEdificacion(edif);
+                    j.getEdificacion().ver();
+                    j.getEdificacion().crear(escoger4("mina", "silo", "cuartel"));
+                } else {
+                    j.getEdificacion().ver();
+                    switch (escoger3()) {
+                        case 1:
+                            j.getEdificacion().crear(escoger4("mina", "silo", "cuartel"));
+                            break;
+                        case 2:
+                            System.out.println("no puedes atacar con un edificio");
+                            break;
+                        case 3:
+                            System.out.println("no puedes recolectar");
+                            break;
+                    }
+                }
                 break;
             case 3:
-                if(null==j.getVehiculo()){
-                RAZA1 vehi = j.getRaza().getraza1(opcion);
-                 j.setVehiculo(vehi);
-                    System.out.println("ola1");
-                 j.getVehiculo().ver();
-                 j.getVehiculo().crear(escoger4("tanque","aviones","misil"));
-                 }else{
-                   j.getVehiculo().ver();
-                     j.getVehiculo().crear(escoger4("tanque","aviones","misil"));
-                 }
+                if (null == j.getVehiculo()) {     //----------------------------vehiculos
+                    RAZA1 vehi = j.getRaza().getraza1(opcion);
+                    j.setVehiculo(vehi);
+                    j.getVehiculo().ver();
+                    j.getVehiculo().crear(escoger4("tanque", "aviones", "misil"));
+                } else {
+                    j.getVehiculo().ver();
+                    switch (escoger3()) {
+                        case 1:
+                            j.getVehiculo().crear(escoger4("tanque", "aviones", "misil"));
+                            break;
+                        case 2:
+                            //j.getVehiculo().atacar();
+                            break;
+                        case 3:
+                            System.out.println("no se puede recolectar con esto");
+                            break;
+                    }
+                }
                 break;
         }
     }
 
-    public void escogerra2(Jugador2 j, int opcion) {
-           switch (opcion) {
-            case 1:
-                 if(null==j.getMilicia()){
-                     RAZA2  milicia =j.getRaza().getraza2(opcion);
-                //RAZA2 milicia = (RAZA2) j.getRaza().getraza1(opcion);
-                 j.setMilicia2(milicia);
-                 j.getMilicia2();
-                 j.getMilicia2().crear(escoger4("ejercito","soldado especial","fuerzas especiales"));
-                 }else{
-                     j.getMilicia().ver();
-                     j.getMilicia().crear(escoger4("ejercito","soldado especial","fuerzas especiales"));
-                 }
+     private void escogerra2(Jugador2 j, int opcion) {
+        switch (opcion) {
+            case 1:                         ///milicia--------------------------------------------raza1
+                if (null == j.getMilicia2()) {//esto es para que solo cree una milicia por raza
+
+                    if (null != j.getEdificacion2()) {
+                        j.getEdificacion2().ver();
+                        if (j.getEdificacion2().getcuartel().size() > 0) {
+
+                            RAZA2 mil = j.getRaza().getraza2(opcion);
+                            j.setMilicia2(mil);
+                            j.getMilicia2().ver();
+                            j.getMilicia2().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"));
+                        }
+                    } else {
+                        System.out.println("debes crear un cuartel primero");
+                    }
+                } else {
+                    j.getMilicia2().ver();
+                    switch (escoger3()) {
+                        case 1:
+                            j.getMilicia2().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"));
+                            break;
+                        case 2:
+                            //j.getMilicia().atacar();
+                            System.out.println("atacado");
+                            break;
+                        case 3:
+                            System.out.println("no se puede recolectar nada");
+                            break;
+                    }
+
+                }
                 break;
             case 2:
-                
-                if(null==j.getEdificacion()){
-                RAZA2 edif = (RAZA2) j.getRaza().getraza2(opcion);
-                 j.setEdificacion((Edificacion) edif);
-                 j.getEdificacion().ver();
-                 j.getEdificacion().crear(escoger4("mina","cuartel","silo(misiles)"));
-                 }else{
-                     j.getEdificacion().ver();
-                     j.getEdificacion().crear(escoger4("mina","cuartel","silo(misiles)"));
-                 }
+
+                if (null == j.getEdificacion2()) {///---------------------------------edificaciones
+                    RAZA2 edif = j.getRaza().getraza2(opcion);
+                    j.setEdificacion2(edif);
+                    j.getEdificacion2().ver();
+                    j.getEdificacion2().crear(escoger4("mina", "silo", "cuartel"));
+                } else {
+                    j.getEdificacion2().ver();
+                    switch (escoger3()) {
+                        case 1:
+                            j.getEdificacion2().crear(escoger4("mina", "silo", "cuartel"));
+                            break;
+                        case 2:
+                            System.out.println("no puedes atacar con un edificio");
+                            break;
+                        case 3:
+                            System.out.println("no puedes recolectar");
+                            break;
+                    }
+                }
                 break;
-            default:
-                if(null==j.getVehiculo()){
-                RAZA2 vehi = (RAZA2) j.getRaza().getraza2(opcion);
-                 j.setVehiculo((Vehiculo) vehi);
-                 j.getVehiculo().ver();
-                 j.getVehiculo().crear(escoger4("tanque","aviones","misil"));
-                 }else{
-                   j.getVehiculo().ver();
-                     j.getVehiculo().crear(escoger4("tanque","aviones","misil"));
-                 }
+            case 3:
+                if (null == j.getVehiculo2()) {     //----------------------------vehiculos
+                    RAZA2 vehi = j.getRaza().getraza2(opcion);
+                    j.setVehiculo2(vehi);
+                    j.getVehiculo2().ver();
+                    j.getVehiculo2().crear(escoger4("tanque", "aviones", "misil"));
+                } else {
+                    j.getVehiculo2().ver();
+                    switch (escoger3()) {
+                        case 1:
+                            j.getVehiculo2().crear(escoger4("tanque", "aviones", "misil"));
+                            break;
+                        case 2:
+                            //j.getVehiculo().atacar();
+                            break;
+                        case 3:
+                            System.out.println("no se puede recolectar con esto");
+                            break;
+                    }
+                }
                 break;
         }
     }
 
-    public void escogerra3(Jugador2 j, int opcion) {
-           switch (opcion) {
-            case 1:
-                 if(null==j.getMilicia()){
-                RAZA3 milicia = (RAZA3) j.getRaza().getraza3(opcion);
-                 j.setMilicia((Milicia) milicia);
-                 j.getMilicia().ver();
-                 j.getMilicia().crear(escoger4("ejercito","soldado especial","fuerzas especiales"));
-                 }else{
-                     j.getMilicia().ver();
-                     j.getMilicia().crear(escoger4("ejercito","soldado especial","fuerzas especiales"));
-                 }
+    private void escogerra3(Jugador2 j, int opcion) {
+        switch (opcion) {
+            case 1:                         ///milicia--------------------------------------------raza1
+                if (null == j.getMilicia3()) {//esto es para que solo cree una milicia por raza
+
+                    if (null != j.getEdificacion3()) {
+                        j.getEdificacion3().ver();
+                        if (j.getEdificacion3().getcuartel().size() > 0) {
+
+                            RAZA3 mil = j.getRaza().getraza3(opcion);
+                            j.setMilicia3(mil);
+                            j.getMilicia3().ver();
+                            j.getMilicia3().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"));
+                        }
+                    } else {
+                        System.out.println("debes crear un cuartel primero");
+                    }
+                } else {
+                    j.getMilicia3().ver();
+                    switch (escoger3()) {
+                        case 1:
+                            j.getMilicia3().crear(escoger4("ejercito", "soldado especial", "fuerzas especiales"));
+                            break;
+                        case 2:
+                            //j.getMilicia().atacar();
+                            System.out.println("atacado");
+                            break;
+                        case 3:
+                            System.out.println("no se puede recolectar nada");
+                            break;
+                    }
+
+                }
                 break;
             case 2:
-                
-                if(null==j.getEdificacion()){
-                RAZA3 edif = (RAZA3) j.getRaza().getraza3(opcion);
-                 j.setEdificacion((Edificacion) edif);
-                 j.getEdificacion().ver();
-                 j.getEdificacion().crear(escoger4("mina","cuartel","silo(misiles)"));
-                 }else{
-                     j.getEdificacion().ver();
-                     j.getEdificacion().crear(escoger4("mina","cuartel","silo(misiles)"));
-                 }
+
+                if (null == j.getEdificacion3()) {///---------------------------------edificaciones
+                    RAZA3 edif = j.getRaza().getraza3(opcion);
+                    j.setEdificacion3(edif);
+                    j.getEdificacion3().ver();
+                    j.getEdificacion3().crear(escoger4("mina", "silo", "cuartel"));
+                } else {
+                    j.getEdificacion3().ver();
+                    switch (escoger3()) {
+                        case 1:
+                            j.getEdificacion3().crear(escoger4("mina", "silo", "cuartel"));
+                            break;
+                        case 2:
+                            System.out.println("no puedes atacar con un edificio");
+                            break;
+                        case 3:
+                            System.out.println("no puedes recolectar");
+                            break;
+                    }
+                }
                 break;
-            default:
-                if(null==j.getVehiculo()){
-                RAZA3 vehi = (RAZA3) j.getRaza().getraza3(opcion);
-                 j.setVehiculo((Vehiculo) vehi);
-                 j.getVehiculo().ver();
-                 j.getVehiculo().crear(escoger4("tanque","aviones","misil"));
-                 }else{
-                   j.getVehiculo().ver();
-                     j.getVehiculo().crear(escoger4("tanque","aviones","misil"));
-                 }
+            case 3:
+                if (null == j.getVehiculo3()) {     //----------------------------vehiculos
+                    RAZA3 vehi = j.getRaza().getraza3(opcion);
+                    j.setVehiculo3(vehi);
+                    j.getVehiculo3().ver();
+                    j.getVehiculo3().crear(escoger4("tanque", "aviones", "misil"));
+                } else {
+                    j.getVehiculo3().ver();
+                    switch (escoger3()) {
+                        case 1:
+                            j.getVehiculo3().crear(escoger4("tanque", "aviones", "misil"));
+                            break;
+                        case 2:
+                            //j.getVehiculo().atacar();
+                            break;
+                        case 3:
+                            System.out.println("no se puede recolectar con esto");
+                            break;
+                    }
+                }
                 break;
         }
     }
 
     //----------------------------------------------------------------------------------------------------------    
-    public void escoger2(Jugador2 j,Jugador2 j2,int o1,int o2){///ambos jugadores y sus tipos de raza
+    private void escoger2(Jugador2 j, Jugador2 j2, int o1, int o2) {///ambos jugadores y sus tipos de raza
         String opcion1;
-        while(true){
-        System.out.println("jugador1");
-        for(int i=0;i<2;i++){
-            OUTER:
-            while (true) {
-                System.out.println("escoja una opcion: ");
-                System.out.println("a. milicia");
-                System.out.println("b. edificaciones");
-                System.out.println("c. vehiculos");
-                opcion1 = input.nextLine();
-                if (null == opcion1) {
-                    System.out.println("ingrese una opcion valida");
-                } else {
-                    switch (opcion1) {
-                        case "a":
-                            opcion11 = 1;
-                            break OUTER;
-                        case "b":
-                            opcion11 = 2;
-                            break OUTER;
-                        case "c":
-                            opcion11 = 3;
-                            break OUTER;
-                        default:
-                            System.out.println("ingrese una opcion valida");
-                            break;
+        System.out.println("inicio de juego ******************************");
+        while (true) {
+            System.out.println("jugador1");
+            for (int i = 0; i < 2; i++) {
+                OUTER:
+                while (true) {
+                    System.out.println("escoja una opcion: ");
+                    System.out.println("a. milicia");
+                    System.out.println("b. edificaciones");
+                    System.out.println("c. vehiculos");
+                    opcion1 = input.nextLine();
+                    if (null == opcion1) {
+                        System.out.println("ingrese una opcion valida");
+                    } else {
+                        switch (opcion1) {
+                            case "a":
+                                opcion11 = 1;
+                                break OUTER;
+                            case "b":
+                                opcion11 = 2;
+                                break OUTER;
+                            case "c":
+                                opcion11 = 3;
+                                break OUTER;
+                            default:
+                                System.out.println("ingrese una opcion valida");
+                                break;
+                        }
                     }
                 }
-            }
-            if(i==0){
-                switch (o1) {//o1 es la raza que escogio anteriormente
-                    case 1:
-                        escogerra1(j,opcion11);
-                        break;
-                    case 2:
-                        escogerra2(j,opcion11);
-                        break;
-                    default:
-                        escogerra3(j,opcion11);
-                        break;
-                }
+                if (i == 0) {
+                    switch (o1) {//o1 es la raza que escogio anteriormente
+                        case 1:
+                            escogerra1(j, opcion11);
+                            break;
+                        case 2:
+                            escogerra2(j, opcion11);
+                            break;
+                        default:
+                            escogerra3(j, opcion11);
+                            break;
+                    }
                     System.out.println("jugador2");
-            }else{
-                switch (o2) {
-                    case 1:
-                        escogerra1(j2,opcion11);
-                        break;
-                    case 2:
-                        escogerra2(j2,opcion11);
-                        break;
-                    default:
-                        escogerra3(j2,opcion11);
-                        break;
+                } else {
+                    switch (o2) {
+                        case 1:
+                            escogerra1(j2, opcion11);
+                            break;
+                        case 2:
+                            escogerra2(j2, opcion11);
+                            break;
+                        default:
+                            escogerra3(j2, opcion11);
+                            break;
+                    }
+                    System.out.println(opcion1);
                 }
-                System.out.println(opcion1);
             }
         }
-        }
- }
-    
-    public int escoger3(){
+    }
+
+    private int escoger3() {
         System.out.println("que desea hacer");
         int a;
         String opcion;
-        while(true){
-        System.out.println("a. crear");
-        System.out.println("b. pelear /////no valida para las minas");
-        System.out.println("c.recolectar //////solo valida para las minas");
-        opcion=input.nextLine();
-        if( null == opcion){
-            System.out.println("ingrese una opcion valida");
-        }else switch (opcion) {
-                case "a":
-                    a=1;
-                    return a;
-                case "b":
-                    a=2;
-                    return a;
-                case "c":
-                    a=3;
-                    return a;
-                default:
-                    System.out.println("ingrese una opcion valida");
-                    break;
+        while (true) {
+            System.out.println("a. crear");
+            System.out.println("b. pelear /////no valida para las minas");
+            System.out.println("c.recolectar //////solo valida para las minas");
+            opcion = input.nextLine();
+            if (null == opcion) {
+                System.out.println("ingrese una opcion valida");
+            } else {
+                switch (opcion) {
+                    case "a":
+                        a = 1;
+                        return a;
+                    case "b":
+                        a = 2;
+                        return a;
+                    case "c":
+                        a = 3;
+                        return a;
+                    default:
+                        System.out.println("ingrese una opcion valida");
+                        break;
+                }
             }
-        
+
         }
-        
+
     }
-    
-    public int escoger4(String b,String c,String d){
+
+    private int escoger4(String b, String c, String d) {
         int a;
         String opcion;
-        while(true){
-            System.out.println("a. "+b);
-        System.out.println("b. "+c);
-        System.out.println("c. "+d);
-        opcion=input.nextLine();
-        if("a".equals(opcion)){
-            a=1;
-            return a;
-        }else if("b".equals(opcion)){
-            a=2;
-            return a;
-        }else if("c".equals(opcion)){
-            a=3;
-            return a;
-        }else{
-            System.out.println("ingrese una opcion valida");
+        System.out.println("escoge uno **********************************");
+        while (true) {
+            System.out.println("a. " + b);
+            System.out.println("b. " + c);
+            System.out.println("c. " + d);
+            opcion = input.nextLine();
+            if ("a".equals(opcion)) {
+                a = 1;
+                return a;
+            } else if ("b".equals(opcion)) {
+                a = 2;
+                return a;
+            } else if ("c".equals(opcion)) {
+                a = 3;
+                return a;
+            } else {
+                System.out.println("ingrese una opcion valida");
+            }
+
         }
-            
-        }
-        
+
     }
-    
-    
-    
+
 }
-
-
-
-
-

@@ -21,9 +21,9 @@ public class ProducerRaza1 implements AbstracfactoriRazas{
             case 1:
                 return new Milicia();
             case 2:
-                return new Vehiculo();
-            case 3:
                 return new Edificacion();
+            case 3:
+                return new Vehiculo();
             default:
                 return null;
         }

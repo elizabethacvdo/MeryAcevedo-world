@@ -20,7 +20,7 @@ public class Jugador2 {
     private final String nombre;
    private  AbstracfactoriRazas raza;
    private RAZA1 milicia;
-   private RAZA1 edificacion;
+   private RAZA1 edificacion=null;
    private RAZA1 vehiculo;
    private RAZA2 milicia2;
    private RAZA2 edificacion2;
@@ -113,18 +113,24 @@ public class Jugador2 {
         return raza;
     }
 
-    void setMilicia(RAZA1 milicia) {
+    public void setMilicia(RAZA1 milicia) {
         this.milicia=milicia;
     }
 
-    void setEdificacion(RAZA1 edificacion) {
+    public void setEdificacion(RAZA1 edificacion) {
         this.edificacion=edificacion;   }
 
-    void setVehiculo(RAZA1 vehiculo) {
+    public void setVehiculo(RAZA1 vehiculo) {
         this.vehiculo=vehiculo;    }
     
-    
-
+public boolean getedi2(){
+    try{
+    Edificacion s=(Edificacion) this.getEdificacion();
+    return true ;}
+    catch(ClassCastException e){
+        return false;
+    }
+}
    
     
 }

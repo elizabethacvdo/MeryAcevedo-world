@@ -6,10 +6,10 @@
 package Raza2;
 
 
-import Raza1.RAZA1;
 
 import Raza3.RAZA3;
 import parcial2.AbstracfactoriRazas;
+import Raza1.RAZA1;
 
 /**
  *
@@ -29,9 +29,9 @@ return null;    }
             case 1:
                 return new Milicia();
             case 2:
-                return  new Vehiculo();
+                return  new Edificacion();
             case 3:
-                return new Edificacion();
+                return new Vehiculo();
             default:
                 return null;
         }
